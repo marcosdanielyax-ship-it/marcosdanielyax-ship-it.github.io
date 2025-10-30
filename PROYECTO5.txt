@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+#include <cctype>   
+#include <map>      
+
+using namespace std;
+
+
+string normalizarTexto(const string& texto)
+{
+    
+    map<char, char> reemplazos; 
+    
+   
+    reemplazos['á'] = 'a'; reemplazos['é'] = 'e'; reemplazos['í'] = 'i';
+    reemplazos['ó'] = 'o'; reemplazos['ú'] = 'u';
+    reemplazos['Á'] = 'a'; reemplazos['É'] = 'e'; reemplazos['Í'] = 'i';
+    reemplazos['Ó'] = 'o'; reemplazos['Ú'] = 'u';
+    reemplazos['ñ'] = 'n'; reemplazos['Ñ'] = 'n';
+
+    string textoLimpio = "";
+
+    
+    for (size_t i = 0; i < texto.length(); ++i)
+    {
+        char c = texto[i];
+        c = tolower(c); 
+
+        
+        if (reemplazos.count(c))
+            textoLimpio += reemplazos[c];
+        else if (isalnum(c)) 
+            textoLimpio += c;
+    }
+
+    return textoLimpio;
+}
+
+int main()
+{
+    string texto;
+    cout << "Ingrese un texto para normalizar: ";
+    getline(cin, texto);
+
+    string resultado = normalizarTexto(texto);
+
+    cout << "Texto normalizado: " << resultado << endl;
+
+    return 0;
+}
+
