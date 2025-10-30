@@ -1,111 +1,93 @@
 #include <iostream>
-#include <iomanip> 
-
+#include <iomanip>
 using namespace std;
 
+const int diasEnAnio = 365;
+const int diasEnMes = 30;
+const int diasEnSemana = 7;
 
-const int DIAS_EN_ANIO = 365;
-const int DIAS_EN_MES = 30; 
-const int DIAS_EN_SEMANA = 7;
-
-void calcular_con_while(int dias_total) {
+void calcularConWhile(int diasTotal) {
     cout << "\n--- Usando la estructura WHILE ---\n";
 
-    int dias_restantes = dias_total;
+    int diasRestantes = diasTotal;
     int anios = 0;
     int meses = 0;
     int semanas = 0;
 
-    // años
-    while (dias_restantes >= DIAS_EN_ANIO) {
+    while (diasRestantes >= diasEnAnio) {
         anios++;
-        dias_restantes -= DIAS_EN_ANIO;
+        diasRestantes -= diasEnAnio;
     }
 
-    // meses
-    while (dias_restantes >= DIAS_EN_MES) {
+    while (diasRestantes >= diasEnMes) {
         meses++;
-        dias_restantes -= DIAS_EN_MES;
+        diasRestantes -= diasEnMes;
     }
 
-    // semanas
-    while (dias_restantes >= DIAS_EN_SEMANA) {
+    while (diasRestantes >= diasEnSemana) {
         semanas++;
-        dias_restantes -= DIAS_EN_SEMANA;
+        diasRestantes -= diasEnSemana;
     }
-    
-    // lo restante
-    
+
     cout << "Resultado del calculo con WHILE:\n";
-    cout << dias_total << " dias equivalen a:\n";
+    cout << diasTotal << " dias equivalen a:\n";
     cout << "- Anios: " << anios << endl;
     cout << "- Meses: " << meses << " (Aprox.)" << endl;
     cout << "- Semanas: " << semanas << endl;
-    cout << "- Dias restantes: " << dias_restantes << endl;
+    cout << "- Dias restantes: " << diasRestantes << endl;
 }
 
-void calcular_con_do_while(int dias_total) {
+void calcularConDoWhile(int diasTotal) {
     cout << "\n--- Usando la estructura DO-WHILE ---\n";
 
-    int dias_restantes = dias_total;
+    int diasRestantes = diasTotal;
     int anios = 0;
     int meses = 0;
     int semanas = 0;
-    
-   
 
-    // años
-    if (dias_restantes >= DIAS_EN_ANIO) {
+    if (diasRestantes >= diasEnAnio) {
         do {
             anios++;
-            dias_restantes -= DIAS_EN_ANIO;
-        } while (dias_restantes >= DIAS_EN_ANIO);
+            diasRestantes -= diasEnAnio;
+        } while (diasRestantes >= diasEnAnio);
     }
-    
-    //meses
-    if (dias_restantes >= DIAS_EN_MES) {
+
+    if (diasRestantes >= diasEnMes) {
         do {
             meses++;
-            dias_restantes -= DIAS_EN_MES;
-        } while (dias_restantes >= DIAS_EN_MES);
+            diasRestantes -= diasEnMes;
+        } while (diasRestantes >= diasEnMes);
     }
 
-    // semanas
-    if (dias_restantes >= DIAS_EN_SEMANA) {
+    if (diasRestantes >= diasEnSemana) {
         do {
             semanas++;
-            dias_restantes -= DIAS_EN_SEMANA;
-        } while (dias_restantes >= DIAS_EN_SEMANA);
+            diasRestantes -= diasEnSemana;
+        } while (diasRestantes >= diasEnSemana);
     }
-    
-    // restante
 
     cout << "Resultado del calculo con DO-WHILE:\n";
-    cout << dias_total << " dias equivalen a:\n";
+    cout << diasTotal << " dias equivalen a:\n";
     cout << "- Anios: " << anios << endl;
     cout << "- Meses: " << meses << " (Aprox.)" << endl;
     cout << "- Semanas: " << semanas << endl;
-    cout << "- Dias restantes: " << dias_restantes << endl;
+    cout << "- Dias restantes: " << diasRestantes << endl;
 }
 
-
 int main() {
-    int dias_ingresados;
-    
-    // entrada de datos
+    int diasIngresados;
+
     cout << "PROYECTO 01: Conversor de Dias a Anios, Meses y Semanas\n";
     cout << "--------------------------------------------------------\n";
     cout << "Ingrese el numero de dias: ";
-    
-    
-    if (!(cin >> dias_ingresados) || dias_ingresados < 0) {
+
+    if (!(cin >> diasIngresados) || diasIngresados < 0) {
         cout << "Error: Ingrese un valor numerico positivo valido.\n";
-        return 1; // Salir con error
+        return 1;
     }
 
-    // llama la funciones
-    calcular_con_while(dias_ingresados);
-    calcular_con_do_while(dias_ingresados);
+    calcularConWhile(diasIngresados);
+    calcularConDoWhile(diasIngresados);
 
-    return 0; // Salir sin errores
+    return 0;
 }
